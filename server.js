@@ -7,12 +7,23 @@ const config = new ClickHouse({
   readonly: true,
   queryOptions: {
     profile: "web",
-    database: "default",
+    database: "default", // name of the data base
   },
 });
 
 const ch = new ClickHouse(config);
 const stream = ch.query("SELECT * FROM simple_table");
+ch.query(`CREATE TABLE session_temp (
+    date Date,
+    time DateTime,
+    mark String,
+    ips Array(UInt32),
+    queries Nested (
+        act String,
+        id UInt32
+    )
+)
+ENGINE=MergeTree(date, (mark, time), 8192)`);
 
 /**
  * {description} : Query the data from the DB in a stream manner
