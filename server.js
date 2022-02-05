@@ -12,18 +12,10 @@ const config = new ClickHouse({
 });
 
 const ch = new ClickHouse(config);
+let getCkConfig = () => {
+  return ch;
+};
 const stream = ch.query("SELECT * FROM simple_table");
-ch.query(`CREATE TABLE session_temp (
-    date Date,
-    time DateTime,
-    mark String,
-    ips Array(UInt32),
-    queries Nested (
-        act String,
-        id UInt32
-    )
-)
-ENGINE=MergeTree(date, (mark, time), 8192)`);
 
 /**
  * {description} : Query the data from the DB in a stream manner
@@ -39,8 +31,8 @@ let StreamDataFromDB = () => {
     console.log("end");
   });
 };
-
-StreamDataFromDB();
+// uncomment the below line to run the above function
+// StreamDataFromDB();
 
 /**
  * {description} : Query the all data from the DB at once
@@ -50,7 +42,8 @@ let getAllRecord = async () => {
   console.log(data);
 };
 
-getAllRecord();
+// uncomment the below line to run the above function
+// getAllRecord();
 
 // const queries = [
 //   "DROP TABLE IF EXISTS session_temp",
@@ -78,3 +71,7 @@ getAllRecord();
 //     console.log(rows);
 //   });
 // }
+
+module.exports = {
+  getCkConfig,
+};

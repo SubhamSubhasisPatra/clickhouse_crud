@@ -22,5 +22,7 @@ const config = new ClickHouse({
 git clone https://github.com/SubhamSubhasisPatra/clickhouse_crud.git
 cd clickhouse_crud
 npm ci
+node populate.js // run this one first to load the data into db then
+// then run the server.js file and uncomment the function that you want to use
 node server.js
 ```
