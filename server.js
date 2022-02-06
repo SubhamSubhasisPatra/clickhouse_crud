@@ -48,18 +48,6 @@ let getAllRecord = async () => {
 // const queries = [
 //   "DROP TABLE IF EXISTS session_temp",
 
-//   `CREATE TABLE session_temp (
-// 		date Date,
-// 		time DateTime,
-// 		mark String,
-// 		ips Array(UInt32),
-// 		queries Nested (
-// 			act String,
-// 			id UInt32
-// 		)
-// 	)
-// 	ENGINE=MergeTree(date, (mark, time), 8192)`,
-
 //   "OPTIMIZE TABLE ukit.loadstat PARTITION 201807 FINAL",
 // ];
 
